@@ -1,14 +1,14 @@
 :root {
     --brand-color: var(--ghost-accent-color, #ff572f);
-    --primary-text-color: #333;
-    --secondary-text-color: #999;
-    --white-color: #fff;
-    --lighter-gray-color: #f6f6f6;
-    --light-gray-color: #e6e6e6;
-    --mid-gray-color: #ccc;
+    --primary-text-color: #12121a;
+    --secondary-text-color: #6b6b80;
+    --white-color: #fafafc;
+    --lighter-gray-color: #f0f0f5;
+    --light-gray-color: #e2e2ea;
+    --mid-gray-color: #a0a0b5;
     --dark-gray-color: #444;
-    --darker-gray-color: #1a1a1a;
-    --black-color: #000;
+    --darker-gray-color: #12121a;
+    --black-color: #0a0a0f;
     --green-color: #28a745;
     --orange-color: #ffc107;
     --red-color: #dc3545;
@@ -23,7 +23,7 @@
     --instagram-color: #000000;
     --rss-color: #f26522;
     --animation-base: ease-in-out;
-    --font-sans: Mulish, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
+    --font-sans: Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
     --font-serif: Lora, Times, serif;
     --font-mono: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
     --navbar-height: 80px;
