@@ -36,16 +36,8 @@
     margin-left: 0.3rem;
 }
 
-.tag .tag-media {
-    margin-top: 4.5rem;
-}
-
 @media (max-width: 767px) {
     .tag {
         margin-bottom: 2.5rem;
-    }
-
-    .tag .tag-media {
-        margin-top: 3rem;
     }
 }
