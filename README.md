@@ -1,42 +1,47 @@
-# Dawn
+# ghost-blog-dawn
 
-A highly functional [Ghost](https://github.com/TryGhost/Ghost) theme that adapts to the reader's preferences. Let them read, search, subscribe, navigate, and more with ease.
+Fork personalizado del tema [Dawn](https://github.com/TryGhost/Dawn) para [blog.etejeda.dev](https://blog.etejeda.dev).
 
-**Demo: https://dawn.ghost.io**
+## Cambios respecto al tema original
 
-# Instructions
+- **Posts por pagina:** 10 (original: 5)
+- **Estrella en destacados:** Solo visible en posts marcados como featured (original: oculta en posts publicos)
+- **Boton Share:** Visible solo en posts, no en pages. Estilo con borde redondeado
+- **Imagen de tag:** No se muestra en la pagina del tag (se mantiene para metadatos/SEO)
+- **Paleta de colores:** Alineada con [etejeda.dev](https://etejeda.dev) (purpura como acento, fondos oscuros suavizados para lectura)
+- **Fuente:** Inter en lugar de Mulish
 
-1. [Download this theme](https://github.com/TryGhost/Dawn/archive/main.zip)
-2. Log into Ghost, and go to the `Design` settings area to upload the zip file
+## Configuracion en Ghost Admin
 
-# Development
+- **Accent color:** `#8b5cf6` (Settings > Design > Brand)
 
-Styles are compiled using Gulp/PostCSS to polyfill future CSS spec. You'll need [Node](https://nodejs.org/), [Yarn](https://yarnpkg.com/) and [Gulp](https://gulpjs.com) installed globally. After that, from the theme's root directory:
+## Deploy
+
+El tema se deploya automaticamente a Ghost al hacer push a `main` via GitHub Actions (`TryGhost/action-deploy-theme`).
+
+Los secrets necesarios en el repo:
+- `GHOST_ADMIN_API_URL`
+- `GHOST_ADMIN_API_KEY`
+
+## Desarrollo
 
 ```bash
-# Install
-yarn
-
-# Run build & watch for changes
-yarn dev
+npm install
+npm run dev
 ```
 
-Now you can edit `/assets/css/` files, which will be compiled to `/assets/built/` automatically.
+Los archivos CSS source estan en `/assets/css/` y se compilan con Gulp a `/assets/built/`.
 
-The `zip` Gulp task packages the theme files into `dist/dawn.zip`, which you can then upload to your site.
+## Upstream
+
+Fork de [TryGhost/Dawn](https://github.com/TryGhost/Dawn). Para traer actualizaciones:
 
 ```bash
-yarn zip
+git remote add upstream https://github.com/TryGhost/Dawn.git
+git fetch upstream
+git merge upstream/main
 ```
 
-# Contribution
+## Licencia
 
-This repo is synced automatically with [TryGhost/Themes](https://github.com/TryGhost/Themes) monorepo. If you're looking to contribute or raise an issue, head over to the main repository [TryGhost/Themes](https://github.com/TryGhost/Themes) where our official themes are developed.
-
-## Theme translations
-
-Please see the @Tryghost/Themes/theme-translations/README.md for how to edit or contribute translations.
-
-# Copyright & License
-
-Copyright (c) 2013-2026 Ghost Foundation - Released under the [MIT license](LICENSE).
+[MIT](LICENSE) (heredada del tema original).
