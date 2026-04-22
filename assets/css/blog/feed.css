@@ -71,7 +71,7 @@
 }
 
 .public .icon-star {
-    display: none;
+    display: inline-block;
 }
 
 .feed-length {
