@@ -3,6 +3,33 @@
 <main class="site-main">
 
     {{#post}}
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            "headline": {{#if meta_title}}"{{meta_title}}"{{else}}"{{title}}"{{/if}},
+            {{#if excerpt}}"description": "{{excerpt}}",{{/if}}
+            {{#if feature_image}}"image": "{{img_url feature_image size="xl" absolute="true"}}",{{/if}}
+            "datePublished": "{{date format="YYYY-MM-DDTHH:mm:ssZ"}}",
+            "dateModified": "{{date updated_at format="YYYY-MM-DDTHH:mm:ssZ"}}",
+            "author": {
+                "@type": "Person",
+                "name": "{{primary_author.name}}",
+                "url": "{{primary_author.url absolute="true"}}"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "{{@site.title}}",
+                "url": "{{@site.url}}"
+            },
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "{{url absolute="true"}}"
+            },
+            "url": "{{url absolute="true"}}"
+        }
+        </script>
+
         {{> "content" width="wide"}}
     {{/post}}
 
