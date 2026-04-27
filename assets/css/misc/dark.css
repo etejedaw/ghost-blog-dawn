@@ -87,6 +87,11 @@
     opacity: 1;
 }
 
+.theme-dark .kg-signup-card {
+    border: 0;
+    box-shadow: none;
+}
+
 @media (prefers-color-scheme: dark) {
     html:not(.theme-light):root {
         --primary-text-color: #f0f0f5;
@@ -155,5 +160,10 @@
 
     html:not(.theme-light) .gh-button-share:hover {
         border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    html:not(.theme-light) .kg-signup-card {
+        border: 0;
+        box-shadow: none;
     }
 }
