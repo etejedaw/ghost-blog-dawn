@@ -9,10 +9,12 @@
                         {{date published_at format="DD MMM YYYY"}}
                     </time>
                 </span>
-                {{#if reading_time}}
-                    <span class="single-meta-item single-meta-length">
-                        {{reading_time minute=(t "1 min read") minutes=(t "% min read")}}
-                    </span>
+                {{#if @custom.show_reading_time}}
+                    {{#if reading_time}}
+                        <span class="single-meta-item single-meta-length">
+                            {{reading_time minute=(t "1 min read") minutes=(t "% min read")}}
+                        </span>
+                    {{/if}}
                 {{/if}}
                 {{#primary_tag}}
                     <span class="single-meta-item single-meta-tag">

@@ -13,9 +13,11 @@
 
     <div class="feed-right">
         {{#if featured}}{{> "icons/star"}}{{/if}}
-        <div class="feed-length">
-            {{reading_time minute=(t "1 min read") minutes=(t "% min read")}}
-        </div>
+        {{#if @custom.show_reading_time}}
+            <div class="feed-length">
+                {{reading_time minute=(t "1 min read") minutes=(t "% min read")}}
+            </div>
+        {{/if}}
     </div>
 
     {{> "icons/chevron-right"}}
