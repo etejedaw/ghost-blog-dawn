@@ -30,13 +30,6 @@
         }
         </script>
 
-        {{#if @custom.show_table_of_contents}}
-            <aside class="post-toc" data-post-toc aria-label="{{t "Table of contents"}}">
-                <h2 class="post-toc-title">{{t "Contents"}}</h2>
-                <ol class="post-toc-list"></ol>
-            </aside>
-        {{/if}}
-
         {{> "content" width="wide"}}
     {{/post}}
 
