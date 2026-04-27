@@ -4,6 +4,29 @@ $(function () {
     pagination(false);
 });
 
+(function () {
+    'use strict';
+    var toggle = document.querySelector('.gh-theme-toggle');
+    if (!toggle) return;
+    var html = document.documentElement;
+
+    function isDark() {
+        if (html.classList.contains('theme-dark')) return true;
+        if (html.classList.contains('theme-light')) return false;
+        return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    }
+
+    toggle.addEventListener('click', function () {
+        var goingDark = !isDark();
+        html.classList.add('theme-transition');
+        html.classList.remove('theme-light', 'theme-dark');
+        html.classList.add(goingDark ? 'theme-dark' : 'theme-light');
+        setTimeout(function () {
+            html.classList.remove('theme-transition');
+        }, 300);
+    });
+})();
+
 function featured() {
     'use strict';
     $('.featured-feed').owlCarousel({
