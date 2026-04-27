@@ -127,3 +127,53 @@
         margin-top: 3rem;
     }
 }
+
+.post-toc {
+    display: none;
+}
+
+@media (min-width: 1400px) {
+    .post-toc {
+        display: block;
+        position: fixed;
+        right: 2rem;
+        top: 12rem;
+        max-width: 22rem;
+        max-height: 70vh;
+        overflow-y: auto;
+        font-size: 1.3rem;
+        line-height: 1.4;
+    }
+
+    .post-toc-title {
+        font-size: 1.2rem;
+        font-weight: 800;
+        margin: 0 0 0.8rem;
+        color: var(--secondary-text-color);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .post-toc-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .post-toc-item {
+        margin: 0.4rem 0;
+    }
+
+    .post-toc-h3 {
+        padding-left: 1.2rem;
+    }
+
+    .post-toc a {
+        color: var(--secondary-text-color);
+        text-decoration: none;
+    }
+
+    .post-toc a:hover {
+        color: var(--primary-text-color);
+    }
+}
