@@ -7,6 +7,24 @@
     <title>{{meta_title page=(t " (Page %)")}}</title>
     <link rel="stylesheet" href="{{asset "built/screen.css"}}">
 
+    <script>
+        (function () {
+            try {
+                var entries = performance.getEntriesByType('navigation');
+                var isReload = entries.length > 0 && entries[0].type === 'reload';
+                if (isReload) {
+                    sessionStorage.removeItem('theme');
+                } else {
+                    var stored = sessionStorage.getItem('theme');
+                    if (stored === 'dark' || stored === 'light') {
+                        document.documentElement.classList.remove('theme-light', 'theme-dark');
+                        document.documentElement.classList.add('theme-' + stored);
+                    }
+                }
+            } catch (e) {}
+        })();
+    </script>
+
     {{ghost_head}}
 </head>
 

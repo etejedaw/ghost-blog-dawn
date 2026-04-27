@@ -21,6 +21,9 @@ $(function () {
         html.classList.add('theme-transition');
         html.classList.remove('theme-light', 'theme-dark');
         html.classList.add(goingDark ? 'theme-dark' : 'theme-light');
+        try {
+            sessionStorage.setItem('theme', goingDark ? 'dark' : 'light');
+        } catch (e) {}
         setTimeout(function () {
             html.classList.remove('theme-transition');
         }, 300);
