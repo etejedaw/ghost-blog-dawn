@@ -82,6 +82,14 @@
     </div>
 
     {{#is "post"}}
+        {{#if @member}}
+            <aside class="member-farewell gh-canvas">
+                <p class="member-farewell-text" data-member-farewell{{#if @member.name}} data-member-name="{{@member.name}}"{{/if}}></p>
+            </aside>
+        {{/if}}
+    {{/is}}
+
+    {{#is "post"}}
     <div class="gh-canvas">
     <footer class="single-footer">
 

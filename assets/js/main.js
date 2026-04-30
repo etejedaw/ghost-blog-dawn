@@ -73,43 +73,68 @@
         });
     }
 
-    function memberGreeting() {
-        var el = document.querySelector('[data-member-greeting]');
-        if (!el) return;
+    var memberPrefixes = ['joven', 'alquimista', 'ilustre', 'venerable', 'honorable', 'noble'];
 
-        var greetings = [
-            'Bienvenido de vuelta al Grimorio, {name}',
-            'Los pergaminos te aguardan, {name}',
-            'El Grimorio se abrió de nuevo para ti, {name}',
-            'Tu lugar en el Grimorio sigue intacto, {name}',
-            'Otro día entre pergaminos, {name}',
-            'Adelante, {name}, hay tinta fresca esperándote',
-            'Aquí siguen los pergaminos, {name}, justo donde los dejaste',
-            'Bienvenido al rincón sin algoritmos, {name}',
-            'El archivo se enciende cuando llegas, {name}',
-            'Que tu lectura sea buena, {name}'
-        ];
+    var memberGreetings = [
+        'Bienvenido de vuelta al Grimorio, {name}',
+        'Los pergaminos te aguardan, {name}',
+        'El Grimorio se abrió de nuevo para ti, {name}',
+        'Tu lugar en el Grimorio sigue intacto, {name}',
+        'Otro día entre pergaminos, {name}',
+        'Adelante, {name}, hay tinta fresca esperándote',
+        'Aquí siguen los pergaminos, {name}, justo donde los dejaste',
+        'Bienvenido al rincón sin algoritmos, {name}',
+        'El archivo se enciende cuando llegas, {name}',
+        'Que tu lectura sea buena, {name}'
+    ];
 
-        var prefixes = ['joven', 'alquimista', 'ilustre', 'venerable', 'honorable', 'noble'];
+    var memberFarewells = [
+        'Otro pergamino completado, {name}',
+        'Hasta el próximo pergamino, {name}',
+        'Gracias por leer hasta aquí, {name}',
+        'Aquí termina este pergamino, {name}. Gracias por la lectura',
+        'El Grimorio te espera con más, {name}',
+        'Buen viaje hasta el próximo, {name}',
+        'Que la tinta no se seque, {name}',
+        'Hasta la próxima incursión al Grimorio, {name}',
+        'Otro pergamino archivado, {name}',
+        'Hasta aquí llegó este, {name}. Gracias por seguir leyendo'
+    ];
 
+    function pickRandom(arr) {
+        return arr[Math.floor(Math.random() * arr.length)];
+    }
+
+    function renderMemberPhrase(el, pool, nameClass) {
         var rawName = el.getAttribute('data-member-name');
         var nameSpan = document.createElement('span');
-        nameSpan.className = 'member-greeting-name';
+        nameSpan.className = nameClass;
 
         if (rawName) {
-            var prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
-            nameSpan.textContent = prefix + ' ' + rawName;
+            nameSpan.textContent = pickRandom(memberPrefixes) + ' ' + rawName;
         } else {
             nameSpan.textContent = 'joven aprendiz';
         }
 
-        var greeting = greetings[Math.floor(Math.random() * greetings.length)];
-        var parts = greeting.split('{name}');
+        var phrase = pickRandom(pool);
+        var parts = phrase.split('{name}');
 
         el.textContent = '';
         el.appendChild(document.createTextNode(parts[0]));
         el.appendChild(nameSpan);
         if (parts[1]) el.appendChild(document.createTextNode(parts[1]));
+    }
+
+    function memberGreeting() {
+        var el = document.querySelector('[data-member-greeting]');
+        if (!el) return;
+        renderMemberPhrase(el, memberGreetings, 'member-greeting-name');
+    }
+
+    function memberFarewell() {
+        var el = document.querySelector('[data-member-farewell]');
+        if (!el) return;
+        renderMemberPhrase(el, memberFarewells, 'member-farewell-name');
     }
 
     function memberAnniversary() {
@@ -333,6 +358,7 @@
     }
 
     memberGreeting();
+    memberFarewell();
     memberAnniversary();
     featured();
     themeToggle();

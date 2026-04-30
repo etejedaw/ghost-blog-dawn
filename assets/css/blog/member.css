@@ -32,6 +32,32 @@
     display: none;
 }
 
+.member-farewell {
+    max-width: 720px;
+    margin: 3rem auto 1rem;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    border-top: 1px solid var(--light-gray-color);
+    border-bottom: 1px solid var(--light-gray-color);
+}
+
+.member-farewell-text {
+    margin: 0;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--mid-gray-color);
+}
+
+.member-farewell-text:empty {
+    display: none;
+}
+
+.member-farewell-name {
+    color: var(--ghost-accent-color, #8b5cf6);
+    font-style: normal;
+    font-weight: 600;
+}
+
 @media (max-width: 600px) {
     .member-greeting {
         padding: 3rem 1.5rem 1rem;
