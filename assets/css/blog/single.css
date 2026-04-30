@@ -1,20 +1,21 @@
 .post-toc {
     max-width: 720px;
     margin: 0 auto 3rem;
-    padding: 1rem 1.5rem;
-    font-size: 0.9rem;
-    border: 1px solid var(--light-gray-color);
-    border-radius: 6px;
-    background-color: transparent;
+    padding: 0.25rem 0 0.25rem 1.25rem;
+    font-size: 0.95rem;
+    border-left: 3px solid var(--ghost-accent-color, #8b5cf6);
 }
 
 .post-toc-summary {
-    font-weight: 600;
-    color: var(--darker-gray-color);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ghost-accent-color, #8b5cf6);
     cursor: pointer;
     user-select: none;
     list-style: none;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 0.5rem;
 }
@@ -23,46 +24,63 @@
     display: none;
 }
 
-.post-toc-summary::before {
+.post-toc-summary::after {
     content: "";
     width: 0;
     height: 0;
-    border-left: 5px solid currentColor;
-    border-top: 4px solid transparent;
-    border-bottom: 4px solid transparent;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 5px solid currentColor;
     transition: transform 0.2s ease;
 }
 
-.post-toc[open] .post-toc-summary::before {
-    transform: rotate(90deg);
+.post-toc[open] .post-toc-summary::after {
+    transform: rotate(180deg);
 }
 
 .post-toc-list {
-    margin: 1rem 0 0;
-    padding: 0 0 0 1.25rem;
-    list-style: decimal;
+    margin: 0.75rem 0 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: toc;
 }
 
 .post-toc-item {
-    margin: 0.35rem 0;
-    line-height: 1.4;
+    margin: 0.4rem 0;
+    line-height: 1.5;
+}
+
+.post-toc-h2 {
+    position: relative;
+    padding-left: 1.75rem;
+    counter-increment: toc;
+}
+
+.post-toc-h2::before {
+    content: counter(toc, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--mid-gray-color);
+    letter-spacing: 0.05em;
+}
+
+.post-toc-h3 {
+    padding-left: 3rem;
+    font-size: 0.9rem;
+    color: var(--mid-gray-color);
 }
 
 .post-toc-item a {
-    color: var(--darker-gray-color);
+    color: inherit;
     text-decoration: none;
-    transition: color 0.2s ease;
+    transition: color 0.15s ease;
 }
 
 .post-toc-item a:hover {
     color: var(--ghost-accent-color, #8b5cf6);
-}
-
-.post-toc-h3 {
-    margin-left: 1.25rem;
-    font-size: 0.85rem;
-    list-style: circle;
-    opacity: 0.85;
 }
 
 .reading-progress {
