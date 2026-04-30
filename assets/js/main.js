@@ -116,31 +116,36 @@
         var el = document.querySelector('[data-member-anniversary]');
         if (!el) return;
 
-        var since = el.getAttribute('data-member-since');
-        if (!since) return;
+        function render(createdAt) {
+            var date = new Date(createdAt);
+            if (isNaN(date.getTime())) return;
 
-        var createdAt = new Date(since);
-        if (isNaN(createdAt.getTime())) return;
+            var diffDays = Math.floor((Date.now() - date.getTime()) / 86400000);
+            if (diffDays < 1) return;
 
-        var diffDays = Math.floor((Date.now() - createdAt.getTime()) / 86400000);
+            var text;
+            if (diffDays < 30) {
+                text = 'Llevas ' + diffDays + (diffDays === 1 ? ' día' : ' días') + ' en el Grimorio';
+            } else if (diffDays < 365) {
+                var months = Math.floor(diffDays / 30);
+                text = 'Llevas ' + months + (months === 1 ? ' mes' : ' meses') + ' en el Grimorio';
+            } else {
+                var years = Math.floor(diffDays / 365);
+                text = 'Llevas ' + years + (years === 1 ? ' año' : ' años') + ' en el Grimorio';
+            }
 
-        if (diffDays < 1) {
-            el.style.display = 'none';
-            return;
+            el.textContent = text;
         }
 
-        var text;
-        if (diffDays < 30) {
-            text = 'Llevas ' + diffDays + (diffDays === 1 ? ' día' : ' días') + ' en el Grimorio';
-        } else if (diffDays < 365) {
-            var months = Math.floor(diffDays / 30);
-            text = 'Llevas ' + months + (months === 1 ? ' mes' : ' meses') + ' en el Grimorio';
-        } else {
-            var years = Math.floor(diffDays / 365);
-            text = 'Llevas ' + years + (years === 1 ? ' año' : ' años') + ' en el Grimorio';
-        }
-
-        el.textContent = text;
+        fetch('/members/api/member/', {credentials: 'same-origin'})
+            .then(function (res) {
+                if (!res.ok) return null;
+                return res.json();
+            })
+            .then(function (member) {
+                if (member && member.created_at) render(member.created_at);
+            })
+            .catch(function () {});
     }
 
     function seriesShuffle() {
