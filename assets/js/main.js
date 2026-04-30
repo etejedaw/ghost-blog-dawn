@@ -112,6 +112,37 @@
         if (parts[1]) el.appendChild(document.createTextNode(parts[1]));
     }
 
+    function memberAnniversary() {
+        var el = document.querySelector('[data-member-anniversary]');
+        if (!el) return;
+
+        var since = el.getAttribute('data-member-since');
+        if (!since) return;
+
+        var createdAt = new Date(since);
+        if (isNaN(createdAt.getTime())) return;
+
+        var diffDays = Math.floor((Date.now() - createdAt.getTime()) / 86400000);
+
+        if (diffDays < 1) {
+            el.style.display = 'none';
+            return;
+        }
+
+        var text;
+        if (diffDays < 30) {
+            text = 'Llevas ' + diffDays + (diffDays === 1 ? ' día' : ' días') + ' en el Grimorio';
+        } else if (diffDays < 365) {
+            var months = Math.floor(diffDays / 30);
+            text = 'Llevas ' + months + (months === 1 ? ' mes' : ' meses') + ' en el Grimorio';
+        } else {
+            var years = Math.floor(diffDays / 365);
+            text = 'Llevas ' + years + (years === 1 ? ' año' : ' años') + ' en el Grimorio';
+        }
+
+        el.textContent = text;
+    }
+
     function seriesShuffle() {
         var section = document.querySelector('[data-series]');
         if (!section) return;
@@ -297,6 +328,7 @@
     }
 
     memberGreeting();
+    memberAnniversary();
     featured();
     themeToggle();
     burgerAria();

@@ -22,6 +22,16 @@
     color: var(--ghost-accent-color, #8b5cf6);
 }
 
+.member-greeting-anniversary {
+    margin: 0.5rem 0 0;
+    font-size: 0.95rem;
+    color: var(--mid-gray-color);
+}
+
+.member-greeting-anniversary:empty {
+    display: none;
+}
+
 @media (max-width: 600px) {
     .member-greeting {
         padding: 3rem 1.5rem 1rem;

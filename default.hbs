@@ -91,6 +91,7 @@
                 <p class="member-greeting-text" data-member-greeting{{#if @member.name}} data-member-name="{{@member.name}}"{{/if}}>
                     Bienvenido de vuelta al Grimorio, <span class="member-greeting-name">{{> "member-name"}}</span>
                 </p>
+                <p class="member-greeting-anniversary" data-member-anniversary data-member-since="{{@member.created_at}}"></p>
             </section>
         {{/if}}
 
