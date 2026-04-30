@@ -141,7 +141,12 @@
             toc.style.display = 'none';
             return;
         }
-        var headings = content.querySelectorAll('h2, h3');
+        var headings = Array.prototype.filter.call(
+            content.querySelectorAll('h2, h3'),
+            function (h) {
+                return !h.closest('.kg-card');
+            }
+        );
         if (headings.length < 2) {
             toc.style.display = 'none';
             return;
