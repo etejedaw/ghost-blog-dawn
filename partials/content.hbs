@@ -36,6 +36,8 @@
 
             {{#is "post"}}
             <div class="gh-meta-share">
+                <a class="gh-share-quick gh-share-whatsapp" data-share-quick href="https://wa.me/?text={{encode title}}%20{{encode (url absolute="true")}}" target="_blank" rel="noopener" aria-label="Compartir en WhatsApp">{{> "icons/whatsapp"}}</a>
+                <a class="gh-share-quick gh-share-telegram" data-share-quick href="https://t.me/share/url?url={{encode (url absolute="true")}}&text={{encode title}}" target="_blank" rel="noopener" aria-label="Compartir en Telegram">{{> "icons/telegram"}}</a>
                 <a href="#/share" class="gh-button-share">{{t "Share"}} {{> "icons/share"}}</a>
             </div>
             {{/is}}

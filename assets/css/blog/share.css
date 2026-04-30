@@ -1,6 +1,45 @@
 .gh-meta-share {
-    margin-top: 24px;
+    display: flex;
+    align-items: center;
     justify-content: center;
+    gap: 0.5rem;
+    margin-top: 24px;
+}
+
+.gh-share-quick {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    color: var(--secondary-text-color);
+    border: 1px solid var(--light-gray-color);
+    border-radius: 100px;
+    transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.gh-share-quick:hover {
+    border-color: var(--mid-gray-color);
+    opacity: 1;
+}
+
+.gh-share-quick svg {
+    width: 16px;
+    height: 16px;
+}
+
+.gh-share-whatsapp:hover {
+    color: #25d366;
+    border-color: #25d366;
+}
+
+.gh-share-telegram:hover {
+    color: #229ed9;
+    border-color: #229ed9;
+}
+
+.is-native-share [data-share-quick] {
+    display: none;
 }
 
 .gh-button-share {

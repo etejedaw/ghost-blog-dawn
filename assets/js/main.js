@@ -73,8 +73,27 @@
         });
     }
 
+    function shareSetup() {
+        var shareBtn = document.querySelector('.gh-button-share');
+        if (!shareBtn) return;
+
+        var isTouch = window.matchMedia('(pointer: coarse)').matches;
+        if (!isTouch || !navigator.share) return;
+
+        document.body.classList.add('is-native-share');
+
+        shareBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            navigator.share({
+                title: document.title,
+                url: location.href
+            }).catch(function () {});
+        });
+    }
+
     featured();
     themeToggle();
     burgerAria();
+    shareSetup();
     if (typeof pagination === 'function') pagination(false);
 })();
