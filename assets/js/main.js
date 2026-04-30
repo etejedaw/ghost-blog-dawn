@@ -126,7 +126,7 @@
             var progress = total > 0 ? (scrolled / total) * 100 : 0;
             progress = Math.max(0, Math.min(100, progress));
             bar.style.width = progress + '%';
-            if (toc) toc.classList.toggle('is-toc-hidden', progress >= 100);
+            if (toc) toc.classList.toggle('is-toc-visible', progress > 0 && progress < 100);
             ticking = false;
         }
 
