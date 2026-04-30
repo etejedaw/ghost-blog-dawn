@@ -73,6 +73,28 @@
         });
     }
 
+    function seriesShuffle() {
+        var section = document.querySelector('[data-series]');
+        if (!section) return;
+
+        var items = Array.prototype.slice.call(section.querySelectorAll('[data-series-item]'));
+        if (items.length < 3) {
+            section.style.display = 'none';
+            return;
+        }
+
+        for (var i = items.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var tmp = items[i];
+            items[i] = items[j];
+            items[j] = tmp;
+        }
+
+        items.slice(0, 3).forEach(function (item) {
+            item.classList.add('is-visible');
+        });
+    }
+
     function codeCopy() {
         if (!navigator.clipboard) return;
 
@@ -236,6 +258,7 @@
     shareSetup();
     tableOfContents();
     codeCopy();
+    seriesShuffle();
     readingProgress();
     if (typeof pagination === 'function') pagination(false);
 })();

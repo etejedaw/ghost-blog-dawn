@@ -18,6 +18,14 @@
     gap: 2rem;
 }
 
+.series-item {
+    display: none;
+}
+
+.series-item.is-visible {
+    display: block;
+}
+
 .series-item-link {
     display: block;
     color: inherit;

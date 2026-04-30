@@ -1,11 +1,11 @@
 {{#if post.primary_tag}}
-    {{#get "posts" filter="primary_tag:{{post.primary_tag.slug}}+id:-{{post.id}}" order="published_at asc" limit="6" as |series|}}
-        {{#match series.length ">=" 2}}
-            <section class="series-wrapper gh-canvas">
-                <h3 class="series-title">Sigue leyendo "{{post.primary_tag.name}}"</h3>
+    {{#get "posts" filter="primary_tag:{{post.primary_tag.slug}}+id:-{{post.id}}" order="published_at asc" limit="10" as |series|}}
+        {{#match series.length ">=" 3}}
+            <section class="series-wrapper gh-canvas" data-series>
+                <h3 class="series-title">Sigue leyendo "{{@root.post.primary_tag.name}}"</h3>
                 <div class="series-grid">
                     {{#foreach series}}
-                        <article class="series-item">
+                        <article class="series-item" data-series-item>
                             <a class="series-item-link" href="{{url}}">
                                 <div class="series-item-media u-placeholder horizontal">
                                     {{#if feature_image}}
