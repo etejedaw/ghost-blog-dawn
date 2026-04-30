@@ -97,14 +97,12 @@
         font-size: 1rem;
         z-index: 10;
         opacity: 0;
-        visibility: hidden;
         pointer-events: none;
-        transition: opacity 0.25s ease, visibility 0.25s ease;
+        transition: opacity 0.25s ease;
     }
 
     .post-toc.is-toc-visible {
         opacity: 1;
-        visibility: visible;
         pointer-events: auto;
     }
 
