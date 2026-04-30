@@ -134,7 +134,7 @@
     .error-suggestion:nth-child(3) {
         grid-column: 1 / -1;
         max-width: calc(50% - 1rem);
-        margin: 0 auto;
+        justify-self: center;
     }
 }
 
@@ -145,6 +145,8 @@
     }
 
     .error-suggestion:nth-child(3) {
+        grid-column: auto;
         max-width: none;
+        justify-self: stretch;
     }
 }

@@ -106,7 +106,13 @@
         column-gap: 20px;
     }
 
-    .featured-nav {
-        display: none;
+    .featured-nav-btn {
+        width: 34px;
+        height: 34px;
+    }
+
+    .featured-nav-btn .icon {
+        width: 18px;
+        height: 18px;
     }
 }
