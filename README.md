@@ -31,6 +31,11 @@ Fork personalizado del tema [Dawn](https://github.com/TryGhost/Dawn) para [blog.
 - **TOC con heading activo destacado:** Conforme el lector hace scroll, el heading visible en el tercio superior del viewport se marca en el TOC con color accent y peso semibold. Usa `IntersectionObserver`, sin polling
 - **Boton "Copiar codigo"** en cada bloque `<pre>` dentro de posts. Icono clipboard que cambia a check verde por 2 segundos al copiar. Estado por defecto translucido, se intensifica al hover sobre el bloque. Compatible con Prism (usado para syntax highlighting via code injection)
 - **Seccion "Sigue leyendo {serie}"** al final del post (antes de related posts). Trae 3 posts al azar del mismo `primary_tag`, excluyendo el actual. No se muestra si la serie tiene menos de 3 posts adicionales. Cards con feature image grande y titulo, hover con zoom sutil de imagen y cambio de color del titulo
+- **404 narrativo para members logueados:** Cuando un member visita una URL inexistente, ve un mensaje propio del universo del Grimorio en lugar del 404 generico. CTAs y posts sugeridos siguen iguales para ambos
+- **Saludo de bienvenida en home para members:** "Bienvenido al Grimorio, {nombre}" arriba del feed. Pool de 10 frases distintas y 6 prefijos invariables (joven/alquimista/ilustre/venerable/honorable/noble) que se eligen al azar en cada visita. El nombre va destacado en color accent. Si el member no tiene nombre configurado, se usa "joven aprendiz" sin prefijo
+- **Aniversario del member en home:** Linea sutil bajo el saludo: "Llevas X dias/meses/años en el Grimorio". Calculado desde `created_at` (fetch a `/members/api/member/` ya que Ghost no expone ese campo en Handlebars). No aparece para members con menos de 1 dia
+- **Despedida personalizada al final del post:** Solo para members logueados. Mismo sistema de prefijos random que el saludo, con pool de 10 frases de cierre ("Otro pergamino completado", "Hasta el proximo pergamino", etc.). Centralizado: prefijos y funcion de render compartidos entre saludo y despedida en `assets/js/main.js`
+- **Partial `member-name` reutilizable:** Centraliza el fallback "joven aprendiz" cuando `@member.name` esta vacio. Usado tanto en 404 como en saludo del home
 
 ## Configuracion en Ghost Admin
 
