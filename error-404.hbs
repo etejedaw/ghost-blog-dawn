@@ -4,10 +4,17 @@
     <section class="error-content gh-canvas">
         <div class="error-inner">
             <span class="error-code">404</span>
-            <h1 class="error-title">Página no encontrada</h1>
-            <p class="error-description">
-                La página que buscas no existe o fue movida.
-            </p>
+            {{#unless @member}}
+                <h1 class="error-title">Página no encontrada</h1>
+                <p class="error-description">
+                    La página que buscas no existe o fue movida.
+                </p>
+            {{else}}
+                <h1 class="error-title">Aquí no hay nada escrito, {{#if @member.name}}{{@member.name}}{{else}}joven aprendiz{{/if}}</h1>
+                <p class="error-description">
+                    Este rincón del Grimorio está vacío. Volvamos al índice.
+                </p>
+            {{/unless}}
 
             <div class="error-actions">
                 <a class="gh-btn gh-primary-btn" href="{{@site.url}}">Volver al inicio</a>
