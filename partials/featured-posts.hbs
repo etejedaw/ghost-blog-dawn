@@ -4,10 +4,20 @@
     <section class="featured-wrapper gh-inner">
 
         {{#if @custom.featured_title}}
-            <h2 class="featured-title">{{@custom.featured_title}}</h2>
+            <div class="featured-header">
+                <h2 class="featured-title">{{@custom.featured_title}}</h2>
+                <div class="featured-nav">
+                    <button class="featured-nav-btn featured-nav-prev" aria-label="Anterior">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor" class="icon"><path d="M20.547 22.107L14.44 16l6.107-6.12L18.667 8l-8 8 8 8 1.88-1.893z"></path></svg>
+                    </button>
+                    <button class="featured-nav-btn featured-nav-next" aria-label="Siguiente">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor" class="icon"><path d="M11.453 22.107L17.56 16l-6.107-6.12L13.333 8l8 8-8 8-1.88-1.893z"></path></svg>
+                    </button>
+                </div>
+            </div>
         {{/if}}
 
-        <div class="featured-feed owl">
+        <div class="featured-feed">
         {{#foreach featured}}
             <article class="{{post_class}}">
                 <div class="u-placeholder horizontal">
