@@ -1,0 +1,79 @@
+.error-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    padding-block: 4rem;
+    text-align: center;
+}
+
+.error-inner {
+    max-width: 560px;
+}
+
+.error-code {
+    display: block;
+    font-size: 8rem;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: var(--color-darker-gray);
+    opacity: 0.4;
+}
+
+.error-title {
+    margin: 1.5rem 0 1rem;
+    font-size: 2.4rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.error-description {
+    margin: 0 auto 2rem;
+    font-size: 1.15rem;
+    line-height: 1.5;
+    color: var(--color-mid-gray);
+}
+
+.error-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+}
+
+.error-actions .gh-btn {
+    cursor: pointer;
+}
+
+.error-stack {
+    margin-top: 3rem;
+    padding: 1.5rem;
+    font-family: var(--font-mono, monospace);
+    font-size: 0.85rem;
+    text-align: left;
+    background: var(--color-lighter-gray, #f5f5f5);
+    border-radius: 6px;
+    overflow-x: auto;
+}
+
+.error-stack h3 {
+    margin: 0 0 0.75rem;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+@media (max-width: 600px) {
+    .error-code {
+        font-size: 5.5rem;
+    }
+
+    .error-title {
+        font-size: 1.8rem;
+    }
+
+    .error-description {
+        font-size: 1rem;
+    }
+}

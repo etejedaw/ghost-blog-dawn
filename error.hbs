@@ -1,0 +1,28 @@
+{{!< default}}
+
+<main class="site-main">
+    <section class="error-content gh-canvas">
+        <div class="error-inner">
+            <span class="error-code">{{statusCode}}</span>
+            <h1 class="error-title">Algo salió mal</h1>
+            <p class="error-description">
+                {{#if message.statusMessage}}
+                    {{message.statusMessage}}
+                {{else}}
+                    Ocurrió un error inesperado al cargar esta página.
+                {{/if}}
+            </p>
+
+            <div class="error-actions">
+                <a class="gh-btn gh-primary-btn" href="{{@site.url}}">Volver al inicio</a>
+            </div>
+
+            {{#if message.errorDetails}}
+                <section class="error-stack">
+                    <h3>Detalles técnicos</h3>
+                    {{{message.errorDetails}}}
+                </section>
+            {{/if}}
+        </div>
+    </section>
+</main>
