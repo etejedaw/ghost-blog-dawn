@@ -73,6 +73,45 @@
         });
     }
 
+    function memberGreeting() {
+        var el = document.querySelector('[data-member-greeting]');
+        if (!el) return;
+
+        var greetings = [
+            'Bienvenido de vuelta al Grimorio, {name}',
+            'Los pergaminos te aguardan, {name}',
+            'El Grimorio se abrió de nuevo para ti, {name}',
+            'Tu lugar en el Grimorio sigue intacto, {name}',
+            'Otro día entre pergaminos, {name}',
+            'Adelante, {name}, hay tinta fresca esperándote',
+            'Aquí siguen los pergaminos, {name}, justo donde los dejaste',
+            'Bienvenido al rincón sin algoritmos, {name}',
+            'El archivo se enciende cuando llegas, {name}',
+            'Que tu lectura sea buena, {name}'
+        ];
+
+        var prefixes = ['joven', 'alquimista', 'ilustre', 'venerable', 'honorable', 'noble'];
+
+        var rawName = el.getAttribute('data-member-name');
+        var nameSpan = document.createElement('span');
+        nameSpan.className = 'member-greeting-name';
+
+        if (rawName) {
+            var prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
+            nameSpan.textContent = prefix + ' ' + rawName;
+        } else {
+            nameSpan.textContent = 'joven aprendiz';
+        }
+
+        var greeting = greetings[Math.floor(Math.random() * greetings.length)];
+        var parts = greeting.split('{name}');
+
+        el.textContent = '';
+        el.appendChild(document.createTextNode(parts[0]));
+        el.appendChild(nameSpan);
+        if (parts[1]) el.appendChild(document.createTextNode(parts[1]));
+    }
+
     function seriesShuffle() {
         var section = document.querySelector('[data-series]');
         if (!section) return;
@@ -257,6 +296,7 @@
         });
     }
 
+    memberGreeting();
     featured();
     themeToggle();
     burgerAria();

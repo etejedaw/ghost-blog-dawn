@@ -88,7 +88,7 @@
     {{#is "home"}}
         {{#if @member}}
             <section class="member-greeting">
-                <p class="member-greeting-text">
+                <p class="member-greeting-text" data-member-greeting{{#if @member.name}} data-member-name="{{@member.name}}"{{/if}}>
                     Bienvenido de vuelta al Grimorio, <span class="member-greeting-name">{{> "member-name"}}</span>
                 </p>
             </section>
