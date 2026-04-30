@@ -104,6 +104,10 @@
             li.appendChild(a);
             list.appendChild(li);
         });
+
+        if (window.matchMedia('(min-width: 1400px)').matches) {
+            toc.open = true;
+        }
     }
 
     function readingProgress() {

@@ -83,6 +83,41 @@
     color: var(--ghost-accent-color, #8b5cf6);
 }
 
+@media (min-width: 1400px) {
+    .post-toc {
+        position: fixed;
+        top: 8rem;
+        left: calc(50% + 360px + 60px);
+        width: 240px;
+        max-width: 240px;
+        max-height: calc(100vh - 12rem);
+        overflow-y: auto;
+        margin: 0;
+        padding: 0.5rem 0 0.5rem 1.25rem;
+        font-size: 1rem;
+        z-index: 10;
+    }
+
+    .post-toc-summary {
+        font-size: 0.85rem;
+    }
+
+    .post-toc-h2 {
+        font-size: 0.95rem;
+        padding-left: 2rem;
+    }
+
+    .post-toc-h2::before {
+        font-size: 0.8rem;
+        top: 0.1rem;
+    }
+
+    .post-toc-h3 {
+        font-size: 0.9rem;
+        padding-left: 3rem;
+    }
+}
+
 .reading-progress {
     position: fixed;
     top: 0;
