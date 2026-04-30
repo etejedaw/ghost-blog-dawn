@@ -8,7 +8,6 @@ Fork personalizado del tema [Dawn](https://github.com/TryGhost/Dawn) para [blog.
 - **Estrella en destacados:** Visible en todos los posts marcados como featured, sin importar visibilidad (original: oculta o inconsistente)
 - **Boton Share:** Visible solo en posts, no en pages. Estilo propio con borde redondeado
 - **Imagen de tag:** Oculta en la pagina del tag (se mantiene para metadatos/SEO)
-- **Tabla de contenidos (TOC):** Generada automaticamente para posts a partir de los headings, con setting custom para activar/desactivar y breakpoint controlado para evitar overlap con imagenes anchas
 - **Paleta de colores:** Alineada con [etejeda.dev](https://etejeda.dev) (`#8b5cf6` purpura como acento)
 - **Fuente:** Inter (en lugar de Mulish, removida del bundle)
 - **Lora con `font-display: swap`** para evitar FOIT
