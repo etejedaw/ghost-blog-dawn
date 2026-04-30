@@ -25,4 +25,60 @@
             {{/if}}
         </div>
     </section>
+
+    {{#get "posts" filter="featured:true" limit="3" as |suggested|}}
+        {{#if suggested}}
+            <section class="error-suggestions gh-canvas">
+                <h2 class="error-suggestions-title">Pero quizá te interesen estos posts</h2>
+                <div class="error-suggestions-grid">
+                    {{#foreach suggested}}
+                        <article class="error-suggestion {{post_class}}">
+                            <div class="error-suggestion-media u-placeholder horizontal">
+                                {{#if feature_image}}
+                                    <img
+                                        class="u-object-fit"
+                                        srcset="{{> srcset}}"
+                                        sizes="(min-width: 992px) 280px, (min-width: 600px) 45vw, 92vw"
+                                        src="{{img_url feature_image size="m"}}"
+                                        alt="{{title}}"
+                                        loading="lazy"
+                                    >
+                                {{/if}}
+                            </div>
+                            <h3 class="error-suggestion-title">{{title}}</h3>
+                            <a class="u-permalink" href="{{url}}" aria-label="{{title}}"></a>
+                        </article>
+                    {{/foreach}}
+                </div>
+            </section>
+        {{else}}
+            {{#get "posts" limit="3" as |latest|}}
+                {{#if latest}}
+                    <section class="error-suggestions gh-canvas">
+                        <h2 class="error-suggestions-title">Pero quizá te interesen estos posts</h2>
+                        <div class="error-suggestions-grid">
+                            {{#foreach latest}}
+                                <article class="error-suggestion {{post_class}}">
+                                    <div class="error-suggestion-media u-placeholder horizontal">
+                                        {{#if feature_image}}
+                                            <img
+                                                class="u-object-fit"
+                                                srcset="{{> srcset}}"
+                                                sizes="(min-width: 992px) 280px, (min-width: 600px) 45vw, 92vw"
+                                                src="{{img_url feature_image size="m"}}"
+                                                alt="{{title}}"
+                                                loading="lazy"
+                                            >
+                                        {{/if}}
+                                    </div>
+                                    <h3 class="error-suggestion-title">{{title}}</h3>
+                                    <a class="u-permalink" href="{{url}}" aria-label="{{title}}"></a>
+                                </article>
+                            {{/foreach}}
+                        </div>
+                    </section>
+                {{/if}}
+            {{/get}}
+        {{/if}}
+    {{/get}}
 </main>
