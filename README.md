@@ -4,22 +4,62 @@ Fork personalizado del tema [Dawn](https://github.com/TryGhost/Dawn) para [blog.
 
 ## Cambios respecto al tema original
 
+### Contenido y layout
+
 - **Posts por pagina:** 10 (original: 5)
-- **Estrella en destacados:** Solo visible en posts marcados como featured (original: oculta en posts publicos)
-- **Boton Share:** Visible solo en posts, no en pages. Estilo con borde redondeado
-- **Imagen de tag:** No se muestra en la pagina del tag (se mantiene para metadatos/SEO)
-- **Paleta de colores:** Alineada con [etejeda.dev](https://etejeda.dev) (purpura como acento, fondos oscuros suavizados para lectura)
-- **Fuente:** Inter en lugar de Mulish
+- **Estrella en destacados:** Solo visible en posts marcados como featured y publicos (original: oculta o inconsistente)
+- **Boton Share:** Visible solo en posts, no en pages. Estilo propio con borde redondeado
+- **Imagen de tag:** Oculta en la pagina del tag (se mantiene para metadatos/SEO)
+- **Tabla de contenidos (TOC):** Generada automaticamente para posts a partir de los headings, con setting custom para activar/desactivar y breakpoint controlado para evitar overlap con imagenes anchas
+
+### Estilo visual
+
+- **Paleta de colores:** Alineada con [etejeda.dev](https://etejeda.dev) (`#8b5cf6` purpura como acento)
+- **Fuente:** Inter (en lugar de Mulish, removida del bundle)
+- **Lora con `font-display: swap`** para evitar FOIT
+- **Light mode:** Background del navbar igualado al body
+- **Dark mode:** Backgrounds suavizados para lectura nocturna comoda y contraste de grises ajustado para cumplir WCAG AA
+
+### Funcionalidad
+
+- **Theme toggle manual:** Boton sol/luna en el header con persistencia entre navegacion (se resetea al recargar la pagina). Override del `prefers-color-scheme` del SO
+- **Setting custom `show_reading_time`:** Permite ocultar el tiempo de lectura desde Ghost Admin
+- **Lazy loading** en imagenes del carrusel de featured posts
+- **JSON-LD BlogPosting schema** inyectado en cada post para rich snippets en buscadores
+
+### Paginas custom
+
+- **`error.hbs`** y **`error-404.hbs`:** Paginas de error propias en espanol con CTA de retorno y buscador, en lugar del fallback generico de Ghost
+- **Seccion "Pero quizá te interesen estos posts"** en errores: muestra 3 posts destacados (con fallback a posts recientes)
+
+### Performance
+
+- **Sin jQuery:** Removido del bundle (jQuery 3.5.1 desde CDN, ~87kb)
+- **Sin Owl Carousel:** Reemplazado por scroll-snap CSS nativo + ~50 lineas de JS vanilla. Botones prev/next con estado disabled, swipe nativo en movil
+
+### Accesibilidad
+
+- `aria-label` agregado a botones de navegacion del carrusel de featured
 
 ## Configuracion en Ghost Admin
 
 - **Accent color:** `#8b5cf6` (Settings > Design > Brand)
+- **Theme settings disponibles** (Settings > Design > Site-wide):
+  - Navigation layout (Logo on the left/middle/Stacked)
+  - Title font / Body font (sans-serif moderno o serif elegante)
+  - Color scheme (Auto/Light/Dark)
+  - Logo blanco para dark mode
+  - Mostrar featured posts en home + titulo personalizable
+  - Mostrar autor / reading time / related posts en cada post
 
 ## Deploy
 
-El tema se deploya automaticamente a Ghost al hacer push a `main` via GitHub Actions (`TryGhost/action-deploy-theme`).
+Deploy automatico via GitHub Actions al hacer push a `main` (`.github/workflows/deploy-theme.yml`).
 
-Los secrets necesarios en el repo:
+- Usa `TryGhost/action-deploy-theme@v1.6.6`
+- Cache de npm habilitado en `actions/setup-node@v4` para builds mas rapidos
+
+Secrets requeridos:
 - `GHOST_ADMIN_API_URL`
 - `GHOST_ADMIN_API_KEY`
 
@@ -41,6 +81,8 @@ git remote add upstream https://github.com/TryGhost/Dawn.git
 git fetch upstream
 git merge upstream/main
 ```
+
+Algunos archivos divergen significativamente del upstream (`assets/js/main.js`, `partials/featured-posts.hbs`, `default.hbs`, multiples CSS): esperar conflictos al mergear.
 
 ## Licencia
 
