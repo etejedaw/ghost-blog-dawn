@@ -69,6 +69,14 @@
         </header>
     {{/match}}
 
+    {{#is "post"}}
+        {{#if @custom.show_table_of_contents}}
+            {{#match reading_time ">=" 8}}
+                {{> "toc"}}
+            {{/match}}
+        {{/if}}
+    {{/is}}
+
     <div class="single-content gh-content gh-canvas">
         {{content}}
     </div>
