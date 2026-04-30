@@ -73,6 +73,39 @@
         });
     }
 
+    function tableOfContents() {
+        var toc = document.querySelector('[data-post-toc]');
+        if (!toc) return;
+        var content = document.querySelector('.gh-content');
+        if (!content) {
+            toc.style.display = 'none';
+            return;
+        }
+        var headings = content.querySelectorAll('h2, h3');
+        if (headings.length < 2) {
+            toc.style.display = 'none';
+            return;
+        }
+        var list = toc.querySelector('.post-toc-list');
+
+        function slugify(s) {
+            return s.toLowerCase().trim()
+                .replace(/[^\w\s-]/g, '')
+                .replace(/\s+/g, '-');
+        }
+
+        Array.prototype.forEach.call(headings, function (h) {
+            if (!h.id) h.id = slugify(h.textContent);
+            var li = document.createElement('li');
+            li.className = 'post-toc-item post-toc-' + h.tagName.toLowerCase();
+            var a = document.createElement('a');
+            a.href = '#' + h.id;
+            a.textContent = h.textContent;
+            li.appendChild(a);
+            list.appendChild(li);
+        });
+    }
+
     function readingProgress() {
         var bar = document.querySelector('[data-reading-progress]');
         var content = document.querySelector('.gh-content');
@@ -125,6 +158,7 @@
     themeToggle();
     burgerAria();
     shareSetup();
+    tableOfContents();
     readingProgress();
     if (typeof pagination === 'function') pagination(false);
 })();

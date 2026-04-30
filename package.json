@@ -99,6 +99,11 @@
                 "type": "boolean",
                 "default": true,
                 "group": "post"
+            },
+            "show_table_of_contents": {
+                "type": "boolean",
+                "default": true,
+                "group": "post"
             }
         }
     },

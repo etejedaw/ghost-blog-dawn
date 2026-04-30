@@ -30,6 +30,12 @@
         }
         </script>
 
+        {{#if @custom.show_table_of_contents}}
+            {{#match reading_time ">=" 8}}
+                {{> "toc"}}
+            {{/match}}
+        {{/if}}
+
         {{> "content" width="wide"}}
     {{/post}}
 

@@ -1,3 +1,70 @@
+.post-toc {
+    max-width: 720px;
+    margin: 0 auto 3rem;
+    padding: 1rem 1.5rem;
+    font-size: 0.9rem;
+    border: 1px solid var(--light-gray-color);
+    border-radius: 6px;
+    background-color: transparent;
+}
+
+.post-toc-summary {
+    font-weight: 600;
+    color: var(--darker-gray-color);
+    cursor: pointer;
+    user-select: none;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.post-toc-summary::-webkit-details-marker {
+    display: none;
+}
+
+.post-toc-summary::before {
+    content: "";
+    width: 0;
+    height: 0;
+    border-left: 5px solid currentColor;
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    transition: transform 0.2s ease;
+}
+
+.post-toc[open] .post-toc-summary::before {
+    transform: rotate(90deg);
+}
+
+.post-toc-list {
+    margin: 1rem 0 0;
+    padding: 0 0 0 1.25rem;
+    list-style: decimal;
+}
+
+.post-toc-item {
+    margin: 0.35rem 0;
+    line-height: 1.4;
+}
+
+.post-toc-item a {
+    color: var(--darker-gray-color);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.post-toc-item a:hover {
+    color: var(--ghost-accent-color, #8b5cf6);
+}
+
+.post-toc-h3 {
+    margin-left: 1.25rem;
+    font-size: 0.85rem;
+    list-style: circle;
+    opacity: 0.85;
+}
+
 .reading-progress {
     position: fixed;
     top: 0;
