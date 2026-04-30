@@ -41,6 +41,12 @@
             return window.matchMedia('(prefers-color-scheme: dark)').matches;
         }
 
+        function syncAria() {
+            var dark = isDark();
+            toggle.setAttribute('aria-pressed', dark ? 'true' : 'false');
+            toggle.setAttribute('aria-label', dark ? 'Cambiar a tema claro' : 'Cambiar a tema oscuro');
+        }
+
         toggle.addEventListener('click', function () {
             var goingDark = !isDark();
             html.classList.add('theme-transition');
@@ -49,13 +55,26 @@
             try {
                 sessionStorage.setItem('theme', goingDark ? 'dark' : 'light');
             } catch (e) {}
+            syncAria();
             setTimeout(function () {
                 html.classList.remove('theme-transition');
             }, 300);
+        });
+
+        syncAria();
+    }
+
+    function burgerAria() {
+        var burger = document.querySelector('.gh-burger');
+        if (!burger) return;
+        burger.addEventListener('click', function () {
+            var open = document.body.classList.contains('is-head-open');
+            burger.setAttribute('aria-expanded', open ? 'true' : 'false');
         });
     }
 
     featured();
     themeToggle();
+    burgerAria();
     if (typeof pagination === 'function') pagination(false);
 })();
