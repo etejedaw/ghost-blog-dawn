@@ -26,6 +26,7 @@ Fork personalizado del tema [Dawn](https://github.com/TryGhost/Dawn) para [blog.
 - **`aria-pressed`** y `aria-label` dinamico en el boton de theme toggle ("Cambiar a tema claro/oscuro" segun estado)
 - **Share hibrido:** En desktop se muestran botones rapidos de WhatsApp y Telegram al lado del boton Share (que abre el modal de Ghost con Twitter/Facebook/LinkedIn/Bluesky/Copy link). En movil/tablet, el boton Share dispara la hoja nativa del SO (`navigator.share`) y los botones rapidos se ocultan
 - **Barra de progreso de lectura:** Linea fina arriba del viewport (color accent) que se llena conforme el lector avanza por el cuerpo del post. Solo en posts
+- **Tabla de contenidos (TOC) plegable:** Caja colapsada por defecto al inicio de los posts de 8+ minutos de lectura, con setting custom `show_table_of_contents` para activar/desactivar. Lista H2 y H3 (H3 indentados), scroll suave al hacer click. Si el post tiene menos de 2 headings, se oculta automaticamente
 
 ## Configuracion en Ghost Admin
 
