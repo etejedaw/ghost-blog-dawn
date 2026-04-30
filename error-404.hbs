@@ -10,7 +10,7 @@
                     La página que buscas no existe o fue movida.
                 </p>
             {{else}}
-                <h1 class="error-title">Aquí no hay nada escrito, {{#if @member.name}}{{@member.name}}{{else}}joven aprendiz{{/if}}</h1>
+                <h1 class="error-title">Aquí no hay nada escrito, {{> "member-name"}}</h1>
                 <p class="error-description">
                     Este rincón del Grimorio está vacío. Volvamos al índice.
                 </p>

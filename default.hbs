@@ -89,7 +89,7 @@
         {{#if @member}}
             <section class="member-greeting">
                 <p class="member-greeting-text">
-                    Bienvenido de vuelta al Grimorio, <span class="member-greeting-name">{{#if @member.name}}{{@member.name}}{{else}}joven aprendiz{{/if}}</span>
+                    Bienvenido de vuelta al Grimorio, <span class="member-greeting-name">{{> "member-name"}}</span>
                 </p>
             </section>
         {{/if}}
