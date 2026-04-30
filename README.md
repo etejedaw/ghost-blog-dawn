@@ -7,7 +7,7 @@ Fork personalizado del tema [Dawn](https://github.com/TryGhost/Dawn) para [blog.
 ### Contenido y layout
 
 - **Posts por pagina:** 10 (original: 5)
-- **Estrella en destacados:** Solo visible en posts marcados como featured y publicos (original: oculta o inconsistente)
+- **Estrella en destacados:** Visible en todos los posts marcados como featured, sin importar visibilidad (original: oculta o inconsistente)
 - **Boton Share:** Visible solo en posts, no en pages. Estilo propio con borde redondeado
 - **Imagen de tag:** Oculta en la pagina del tag (se mantiene para metadatos/SEO)
 - **Tabla de contenidos (TOC):** Generada automaticamente para posts a partir de los headings, con setting custom para activar/desactivar y breakpoint controlado para evitar overlap con imagenes anchas
