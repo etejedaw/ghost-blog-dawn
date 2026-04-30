@@ -73,6 +73,36 @@
         });
     }
 
+    function readingProgress() {
+        var bar = document.querySelector('[data-reading-progress]');
+        var content = document.querySelector('.gh-content');
+        if (!bar || !content) return;
+
+        var ticking = false;
+
+        function update() {
+            var rect = content.getBoundingClientRect();
+            var viewportH = window.innerHeight;
+            var total = rect.height - viewportH;
+            var scrolled = -rect.top;
+            var progress = total > 0 ? (scrolled / total) * 100 : 0;
+            progress = Math.max(0, Math.min(100, progress));
+            bar.style.width = progress + '%';
+            ticking = false;
+        }
+
+        function onScroll() {
+            if (!ticking) {
+                window.requestAnimationFrame(update);
+                ticking = true;
+            }
+        }
+
+        window.addEventListener('scroll', onScroll, {passive: true});
+        window.addEventListener('resize', onScroll, {passive: true});
+        update();
+    }
+
     function shareSetup() {
         var shareBtn = document.querySelector('.gh-button-share');
         if (!shareBtn) return;
@@ -95,5 +125,6 @@
     themeToggle();
     burgerAria();
     shareSetup();
+    readingProgress();
     if (typeof pagination === 'function') pagination(false);
 })();

@@ -1,5 +1,10 @@
 <article class="single {{post_class}}">
 
+    {{#is "post"}}
+        <div class="reading-progress" data-reading-progress aria-hidden="true"></div>
+    {{/is}}
+
+
     {{#match @page.show_title_and_feature_image}}
         <header class="single-header gh-canvas">
             {{#is "post"}}

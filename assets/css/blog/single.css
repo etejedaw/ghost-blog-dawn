@@ -1,3 +1,15 @@
+.reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    width: 0;
+    height: 3px;
+    background-color: var(--ghost-accent-color, #8b5cf6);
+    transition: width 0.1s linear;
+    pointer-events: none;
+}
+
 .single-header {
     margin-bottom: 4.5rem;
     text-align: center;
