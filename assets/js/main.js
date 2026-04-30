@@ -115,6 +115,7 @@
         var content = document.querySelector('.gh-content');
         if (!bar || !content) return;
 
+        var toc = document.querySelector('[data-post-toc]');
         var ticking = false;
 
         function update() {
@@ -125,6 +126,7 @@
             var progress = total > 0 ? (scrolled / total) * 100 : 0;
             progress = Math.max(0, Math.min(100, progress));
             bar.style.width = progress + '%';
+            if (toc) toc.classList.toggle('is-toc-hidden', progress >= 100);
             ticking = false;
         }
 
