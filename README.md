@@ -26,7 +26,11 @@ Fork personalizado del tema [Dawn](https://github.com/TryGhost/Dawn) para [blog.
 - **`aria-pressed`** y `aria-label` dinamico en el boton de theme toggle ("Cambiar a tema claro/oscuro" segun estado)
 - **Share hibrido:** En desktop se muestran botones rapidos de WhatsApp y Telegram al lado del boton Share (que abre el modal de Ghost con Twitter/Facebook/LinkedIn/Bluesky/Copy link). En movil/tablet, el boton Share dispara la hoja nativa del SO (`navigator.share`) y los botones rapidos se ocultan
 - **Barra de progreso de lectura:** Linea fina arriba del viewport (color accent) que se llena conforme el lector avanza por el cuerpo del post. Solo en posts
-- **Tabla de contenidos (TOC) plegable:** Caja colapsada por defecto al inicio de los posts de 8+ minutos de lectura, con setting custom `show_table_of_contents` para activar/desactivar. Lista H2 y H3 (H3 indentados), scroll suave al hacer click. Si el post tiene menos de 2 headings, se oculta automaticamente
+- **Tabla de contenidos (TOC) plegable:** Aparece debajo de la imagen del post para posts de 8+ minutos de lectura. Lista H2 y H3 (H3 indentados), sin numeracion. Scroll suave al hacer click. Excluye headings dentro de cards de Ghost (signup, CTA, etc.) y se oculta si el post tiene menos de 2 headings utiles. Setting custom `show_table_of_contents` para activar/desactivar globalmente
+- **TOC sticky a la derecha en pantallas grandes (>=1400px):** El TOC inline se transforma en un panel fijo a la derecha del contenido principal, con su propia barra de scroll. Aparece con fade conforme el lector entra al cuerpo del post (reading-progress > 0%) y desaparece con fade al llegar al final (reading-progress = 100%) para no chocar con related posts/footer
+- **TOC con heading activo destacado:** Conforme el lector hace scroll, el heading visible en el tercio superior del viewport se marca en el TOC con color accent y peso semibold. Usa `IntersectionObserver`, sin polling
+- **Boton "Copiar codigo"** en cada bloque `<pre>` dentro de posts. Icono clipboard que cambia a check verde por 2 segundos al copiar. Estado por defecto translucido, se intensifica al hover sobre el bloque. Compatible con Prism (usado para syntax highlighting via code injection)
+- **Seccion "Sigue leyendo {serie}"** al final del post (antes de related posts). Trae 3 posts al azar del mismo `primary_tag`, excluyendo el actual. No se muestra si la serie tiene menos de 3 posts adicionales. Cards con feature image grande y titulo, hover con zoom sutil de imagen y cambio de color del titulo
 
 ## Configuracion en Ghost Admin
 
@@ -44,7 +48,7 @@ Fork personalizado del tema [Dawn](https://github.com/TryGhost/Dawn) para [blog.
 Deploy automatico via GitHub Actions al hacer push a `main` (`.github/workflows/deploy-theme.yml`).
 
 - Usa `TryGhost/action-deploy-theme@v1.6.6`
-- Cache de npm habilitado en `actions/setup-node@v4` para builds mas rapidos
+- Cache de `node_modules` con `actions/cache@v4` y key del hash de `package-lock.json`. Cuando hay cache hit, salta `npm ci` completamente (~13s ahorrados por run). Solo se reinstala cuando cambia el lock
 
 Secrets requeridos:
 - `GHOST_ADMIN_API_URL`
