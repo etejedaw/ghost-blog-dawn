@@ -86,6 +86,14 @@
     </header>
 
     {{#is "home"}}
+        {{#if @member}}
+            <section class="member-greeting">
+                <p class="member-greeting-text">
+                    Bienvenido de vuelta al Grimorio, <span class="member-greeting-name">{{#if @member.name}}{{@member.name}}{{else}}joven aprendiz{{/if}}</span>
+                </p>
+            </section>
+        {{/if}}
+
         {{> "cover"}}
 
         {{#if @custom.show_featured_posts}}

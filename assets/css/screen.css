@@ -16,6 +16,7 @@
 @import "blog/navigation.css";
 @import "blog/related.css";
 @import "blog/series.css";
+@import "blog/member.css";
 @import "blog/comment.css";
 @import "blog/tag.css";
 @import "misc/utils.css";
