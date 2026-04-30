@@ -136,8 +136,8 @@
 
 .code-copy-btn {
     position: absolute;
-    top: 1.25rem;
-    right: 1.25rem;
+    top: 2.5rem;
+    right: 1.5rem;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -147,10 +147,9 @@
     color: rgba(255, 255, 255, 0.55);
     background-color: transparent;
     border: none;
-    border-radius: 4px;
     cursor: pointer;
     opacity: 0.7;
-    transition: opacity 0.15s ease, color 0.15s ease, background-color 0.15s ease;
+    transition: opacity 0.15s ease, color 0.15s ease;
 }
 
 .code-wrapper:hover .code-copy-btn {
@@ -160,7 +159,7 @@
 
 .code-copy-btn:hover {
     color: #ffffff;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: transparent;
 }
 
 .code-copy-btn.is-copied {
