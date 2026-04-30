@@ -136,21 +136,21 @@
 
 .code-copy-btn {
     position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
+    top: 0.75rem;
+    right: 0.75rem;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     width: 32px;
     height: 32px;
     padding: 0;
-    color: rgba(255, 255, 255, 0.7);
-    background-color: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 4px;
+    color: rgba(255, 255, 255, 0.75);
+    background-color: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 5px;
     cursor: pointer;
-    opacity: 0.45;
-    transition: opacity 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+    opacity: 0.55;
+    transition: opacity 0.15s ease, background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
 
 .code-wrapper:hover .code-copy-btn {
@@ -159,12 +159,14 @@
 
 .code-copy-btn:hover {
     color: #ffffff;
-    background-color: rgba(255, 255, 255, 0.16);
+    background-color: rgba(0, 0, 0, 0.7);
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
 .code-copy-btn.is-copied {
     color: #4ade80;
-    border-color: rgba(74, 222, 128, 0.3);
+    border-color: rgba(74, 222, 128, 0.4);
+    background-color: rgba(74, 222, 128, 0.12);
 }
 
 .code-copy-btn svg {
