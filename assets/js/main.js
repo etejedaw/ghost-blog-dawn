@@ -132,6 +132,8 @@
                 .replace(/\s+/g, '-');
         }
 
+        var linkMap = {};
+
         Array.prototype.forEach.call(headings, function (h) {
             if (!h.id) h.id = slugify(h.textContent);
             var li = document.createElement('li');
@@ -141,11 +143,41 @@
             a.textContent = h.textContent;
             li.appendChild(a);
             list.appendChild(li);
+            linkMap[h.id] = li;
         });
 
         if (window.matchMedia('(min-width: 1400px)').matches) {
             toc.open = true;
         }
+
+        if (!('IntersectionObserver' in window)) return;
+
+        var visible = new Set();
+        var observer = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    visible.add(entry.target.id);
+                } else {
+                    visible.delete(entry.target.id);
+                }
+            });
+
+            var activeId = null;
+            Array.prototype.forEach.call(headings, function (h) {
+                if (visible.has(h.id)) activeId = h.id;
+            });
+
+            Object.keys(linkMap).forEach(function (id) {
+                linkMap[id].classList.toggle('is-active', id === activeId);
+            });
+        }, {
+            rootMargin: '-80px 0px -70% 0px',
+            threshold: 0
+        });
+
+        Array.prototype.forEach.call(headings, function (h) {
+            observer.observe(h);
+        });
     }
 
     function readingProgress() {

@@ -83,6 +83,15 @@
     color: var(--ghost-accent-color, #8b5cf6);
 }
 
+.post-toc-item.is-active a {
+    color: var(--ghost-accent-color, #8b5cf6);
+    font-weight: 600;
+}
+
+.post-toc-item.is-active.post-toc-h2::before {
+    color: var(--ghost-accent-color, #8b5cf6);
+}
+
 @media (min-width: 1400px) {
     .post-toc {
         position: fixed;
