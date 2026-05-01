@@ -1,28 +1,30 @@
-{{#if post.primary_tag}}
-    {{#get "posts" filter="primary_tag:{{post.primary_tag.slug}}+id:-{{post.id}}" order="published_at asc" limit="10" as |series|}}
-        {{#match series.length ">=" 3}}
-            <section class="series-wrapper gh-canvas" data-series>
-                <h3 class="series-title">Sigue leyendo "{{@root.post.primary_tag.name}}"</h3>
-                <div class="series-grid">
-                    {{#foreach series}}
-                        <article class="series-item" data-series-item>
-                            <a class="series-item-link" href="{{url}}">
-                                <div class="series-item-media u-placeholder horizontal">
-                                    {{#if feature_image}}
-                                        <img
-                                            class="u-object-fit"
-                                            src="{{img_url feature_image size="m"}}"
-                                            alt="{{title}}"
-                                            loading="lazy"
-                                        >
-                                    {{/if}}
-                                </div>
-                                <h4 class="series-item-title">{{title}}</h4>
-                            </a>
-                        </article>
-                    {{/foreach}}
-                </div>
-            </section>
-        {{/match}}
-    {{/get}}
-{{/if}}
+{{#post}}
+    {{#if primary_tag}}
+        {{#get "posts" filter="primary_tag:{{primary_tag.slug}}+id:-{{id}}" order="published_at asc" limit="10" as |series|}}
+            {{#match series.length ">=" 3}}
+                <section class="series-wrapper gh-canvas" data-series>
+                    <h3 class="series-title">Sigue leyendo "{{../primary_tag.name}}"</h3>
+                    <div class="series-grid">
+                        {{#foreach series}}
+                            <article class="series-item" data-series-item>
+                                <a class="series-item-link" href="{{url}}">
+                                    <div class="series-item-media u-placeholder horizontal">
+                                        {{#if feature_image}}
+                                            <img
+                                                class="u-object-fit"
+                                                src="{{img_url feature_image size="m"}}"
+                                                alt="{{title}}"
+                                                loading="lazy"
+                                            >
+                                        {{/if}}
+                                    </div>
+                                    <h4 class="series-item-title">{{title}}</h4>
+                                </a>
+                            </article>
+                        {{/foreach}}
+                    </div>
+                </section>
+            {{/match}}
+        {{/get}}
+    {{/if}}
+{{/post}}
