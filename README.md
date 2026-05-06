@@ -68,6 +68,40 @@ npm run dev
 
 Los archivos CSS source estan en `/assets/css/` y se compilan con Gulp a `/assets/built/`.
 
+## Pruebas locales con Docker
+
+Stack local con Ghost 5 + MySQL 8 para renderizar el tema sin depender del blog en produccion. El repo se bind-montea como `themes/dawn` en el contenedor, asi que editar `.hbs` se refleja al siguiente request.
+
+**Levantar el stack:**
+
+```bash
+docker compose up -d
+```
+
+Ghost queda disponible en `http://localhost:2368` (admin en `/ghost`). MySQL es efimero (sin volumen), Ghost usa un volumen `ghost_content` para que el entrypoint pueda inicializar `/var/lib/ghost/content/` correctamente.
+
+**Poblar con datos de prueba:**
+
+```bash
+npm run populate
+```
+
+Ejecuta en orden:
+- `populate:admin` — espera a Ghost, crea owner (`owner@local.test` / `LocalGhost-2026`), crea integracion `Local Seed` y guarda el admin API key en `.ghost-local.json` (gitignored).
+- `populate:users` — 4 members con distintas variantes (con/sin nombre, con notas).
+- `populate:articles` — 7 posts cubriendo casos de render: featured con cover, sin cover, members-only, paid-only, serie de 3 partes (para `series-posts.hbs`), draft. Mas 1 page.
+
+Cada subcomando se puede correr suelto (`npm run populate:users`, etc.). El bootstrap es idempotente: reusa la integracion existente si ya esta creada.
+
+**Activar el tema:** primera vez, en `/ghost/#/settings/design/change-theme` activar "dawn".
+
+**Reset completo** (nuke MySQL + volumen `ghost_content` + state local):
+
+```bash
+docker compose down -v
+rm .ghost-local.json
+```
+
 ## Upstream
 
 Fork de [TryGhost/Dawn](https://github.com/TryGhost/Dawn). Para traer actualizaciones:
