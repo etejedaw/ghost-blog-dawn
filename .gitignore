@@ -4,3 +4,4 @@ assets/built/
 .idea/
 .vscode
 .claude
+.ghost-local.json
