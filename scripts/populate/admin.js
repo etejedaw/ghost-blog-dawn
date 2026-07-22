@@ -48,7 +48,7 @@ async function tryExistingKey() {
     }
     try {
         const api = new GhostAdminAPI({url: GHOST_URL, key, version: 'v5.0'});
-        await api.integrations.browse({limit: 1});
+        await api.users.browse({limit: 1});
         console.log(`✓ Existing admin key in ${STATE_FILE} is valid — skipping bootstrap`);
         return true;
     } catch (err) {
@@ -77,9 +77,15 @@ async function runSetup() {
     }
 
     const body = await setupRes.text();
+
+    if (setupRes.status === 403 && body.includes('Setup has already been completed')) {
+        console.log('- Setup already completed — reusing existing owner');
+        return;
+    }
+
     throw new Error(
         `Setup failed (${setupRes.status}): ${body}\n\n` +
-        `If the owner already exists from a previous run, reset state with:\n` +
+        `If the owner credentials changed from a previous run, reset state with:\n` +
         `  docker compose down -v && docker compose up -d`
     );
 }
@@ -136,8 +142,9 @@ async function login() {
         const code = await fetchVerificationCode();
         console.log(`  Got code ${code}, verifying...`);
 
+        // PUT validates the token; POST would just re-send the code email
         const verifyRes = await call('/ghost/api/admin/session/verify/', {
-            method: 'POST',
+            method: 'PUT',
             body: JSON.stringify({token: code}),
         });
 
