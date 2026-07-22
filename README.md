@@ -87,13 +87,16 @@ npm run populate
 ```
 
 Ejecuta en orden:
-- `populate:admin` — espera a Ghost, crea owner (`owner@local.test` / `LocalGhost-2026`), crea integracion `Local Seed` y guarda el admin API key en `.ghost-local.json` (gitignored).
+- `populate:admin` — espera a Ghost, crea owner (`owner@local.test` / `aprendizlocal`), crea integracion `Local Seed`, guarda el admin API key en `.ghost-local.json` (gitignored), activa el tema y configura branding (accent `#8b5cf6`, locale `es`, description).
 - `populate:users` — 4 members con distintas variantes (con/sin nombre, con notas).
 - `populate:articles` — 7 posts cubriendo casos de render: featured con cover, sin cover, members-only, paid-only, serie de 3 partes (para `series-posts.hbs`), draft. Mas 1 page.
 
 Cada subcomando se puede correr suelto (`npm run populate:users`, etc.). El bootstrap es idempotente: reusa la integracion existente si ya esta creada.
 
-**Activar el tema:** primera vez, en `/ghost/#/settings/design/change-theme` activar "dawn".
+**Logins:**
+
+- **Ghost Admin** (`http://localhost:2368/ghost`): `owner@local.test` / `aprendizlocal`. El 2FA pide un codigo de 6 digitos que llega a Mailpit (`http://localhost:8025`).
+- **Sign in del sitio** (portal de members): solo para members (`aprendiz1@local.test`, etc.); envia magic link a Mailpit. El owner **no** es member — intentar entrar ahi con `owner@local.test` da "no existe".
 
 **Reset completo** (nuke MySQL + volumen `ghost_content` + state local):
 

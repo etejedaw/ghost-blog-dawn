@@ -1,5 +1,5 @@
 const GhostAdminAPI = require('@tryghost/admin-api');
-const {GHOST_URL, OWNER, INTEGRATION_NAME, STATE_FILE} = require('./config');
+const {GHOST_URL, OWNER, INTEGRATION_NAME, STATE_FILE, SITE_BRANDING} = require('./config');
 const state = require('./state');
 
 let cookies = '';
@@ -8,6 +8,7 @@ async function call(path, options = {}) {
     const headers = {
         'Content-Type': 'application/json',
         Origin: GHOST_URL,
+        'User-Agent': 'ghost-populate-script',
         ...(options.headers || {}),
     };
     if (cookies) headers.Cookie = cookies;
@@ -122,6 +123,17 @@ async function fetchVerificationCode(maxAttempts = 30) {
     throw new Error('Verification code email not received from Mailpit within 30s');
 }
 
+// Ghost persists the session's verified flag asynchronously after 2FA;
+// an immediate follow-up request can race it and get a 403.
+async function waitForSession() {
+    for (let i = 0; i < 10; i++) {
+        const me = await call('/ghost/api/admin/users/me/');
+        if (me.ok) return;
+        await new Promise(r => setTimeout(r, 500));
+    }
+    throw new Error('Session did not become usable after 2FA verification');
+}
+
 async function login() {
     await clearMailpit();
 
@@ -151,6 +163,7 @@ async function login() {
         if (!verifyRes.ok) {
             throw new Error(`2FA verify failed (${verifyRes.status}): ${await verifyRes.text()}`);
         }
+        await waitForSession();
         console.log(`✓ 2FA verified, session cookie captured`);
         return;
     }
@@ -210,6 +223,31 @@ async function activateTheme(key) {
     }
 }
 
+// Settings need session auth (integration keys get a 501), so this only
+// logs in when the live site drifts from the desired branding.
+async function configureSite() {
+    const res = await fetch(`${GHOST_URL}/ghost/api/admin/site/`);
+    const {site} = await res.json();
+    const drift = SITE_BRANDING.filter(s => site[s.key] !== s.value);
+
+    if (!drift.length) {
+        console.log('✓ Site branding already configured');
+        return;
+    }
+
+    if (!cookies) await login();
+
+    const put = await call('/ghost/api/admin/settings/', {
+        method: 'PUT',
+        body: JSON.stringify({settings: SITE_BRANDING}),
+    });
+
+    if (!put.ok) {
+        throw new Error(`Settings update failed (${put.status}): ${await put.text()}`);
+    }
+    console.log(`✓ Site branding configured (${drift.map(s => s.key).join(', ')})`);
+}
+
 async function main() {
     await waitForGhost();
     let key;
@@ -223,6 +261,7 @@ async function main() {
         console.log(`✓ Admin API key saved to ${STATE_FILE}`);
     }
     await activateTheme(key);
+    await configureSite();
 }
 
 main().catch(err => {

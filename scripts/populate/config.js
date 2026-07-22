@@ -8,4 +8,9 @@ module.exports = {
     },
     INTEGRATION_NAME: 'Local Seed',
     STATE_FILE: '.ghost-local.json',
+    SITE_BRANDING: [
+        {key: 'accent_color', value: '#8b5cf6'},
+        {key: 'locale', value: 'es'},
+        {key: 'description', value: 'Pergaminos y apuntes de un aprendiz'},
+    ],
 };
