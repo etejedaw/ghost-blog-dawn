@@ -86,12 +86,12 @@ Ghost queda disponible en `http://localhost:2368` (admin en `/ghost`). MySQL es 
 npm run populate
 ```
 
-Ejecuta en orden:
+Compila los assets primero (hook `prepopulate` → `gulp build`, para que Ghost no sirva un bundle viejo) y ejecuta en orden:
 - `populate:admin` — espera a Ghost, crea owner (`owner@local.test` / `aprendizlocal`), crea integracion `Local Seed`, guarda el admin API key en `.ghost-local.json` (gitignored), activa el tema y configura branding (accent `#8b5cf6`, locale `es`, description).
 - `populate:users` — 4 members con distintas variantes (con/sin nombre, con notas).
 - `populate:articles` — 7 posts cubriendo casos de render: featured con cover, sin cover, members-only, paid-only, serie de 3 partes (para `series-posts.hbs`), draft. Mas 1 page.
 
-Cada subcomando se puede correr suelto (`npm run populate:users`, etc.). El bootstrap es idempotente: reusa la integracion existente si ya esta creada.
+Cada subcomando se puede correr suelto (`npm run populate:users`, etc.). Todo el populate es **idempotente**: se puede re-ejecutar sin crear duplicados (la key se revalida contra la API, el owner/integracion se reusan, el branding solo se escribe si hay drift, y members/posts/pages se saltan si ya existen — members por email, posts y pages por titulo).
 
 **Logins:**
 
