@@ -77,11 +77,16 @@ const pages = [
     },
 ];
 
-async function add(items, type) {
+async function add(items, type, existing) {
+    const label = type === 'posts' ? 'Post' : 'Page';
     for (const item of items) {
+        if (existing.has(item.title)) {
+            console.log(`- ${label} already exists: ${item.title}`);
+            continue;
+        }
         try {
             await api[type].add(item, {source: 'html'});
-            console.log(`✓ ${type === 'posts' ? 'Post' : 'Page'}: ${item.title}`);
+            console.log(`✓ ${label}: ${item.title}`);
         } catch (err) {
             const msg = err.context || err.message || String(err);
             console.error(`✗ ${type} "${item.title}": ${msg}`);
@@ -89,9 +94,14 @@ async function add(items, type) {
     }
 }
 
+async function existingTitles(type) {
+    const items = await api[type].browse({limit: 'all', filter: 'status:[published,draft,scheduled]', fields: 'title'});
+    return new Set(items.map(i => i.title));
+}
+
 async function main() {
-    await add(posts, 'posts');
-    await add(pages, 'pages');
+    await add(posts, 'posts', await existingTitles('posts'));
+    await add(pages, 'pages', await existingTitles('pages'));
 }
 
 main().catch(err => {
