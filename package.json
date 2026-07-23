@@ -115,6 +115,7 @@
         "dev": "gulp",
         "test": "gscan .",
         "zip": "gulp zip",
+        "prepopulate": "gulp build",
         "populate:admin": "node scripts/populate/admin.js",
         "populate:users": "node scripts/populate/users.js",
         "populate:articles": "node scripts/populate/articles.js",
