@@ -1,14 +1,25 @@
 :root {
-    --brand-color: var(--ghost-accent-color, #ff572f);
-    --primary-text-color: #12121a;
-    --secondary-text-color: #6b6b80;
-    --white-color: #fafafc;
-    --lighter-gray-color: #fafafc;
-    --light-gray-color: #e2e2ea;
-    --mid-gray-color: #a0a0b5;
-    --dark-gray-color: #444;
-    --darker-gray-color: #12121a;
-    --black-color: #0a0a0f;
+    --brand-color: #9c5e10;
+    --primary-text-color: #1a1410;
+    --secondary-text-color: #423a2e;
+    --white-color: #f5ecd7;
+    --lighter-gray-color: #fffaeb;
+    --light-gray-color: #d6c8a3;
+    --mid-gray-color: #7a7160;
+    --dark-gray-color: #423a2e;
+    --darker-gray-color: #1a1410;
+    --black-color: #0f0d09;
+    --dot-grid: rgba(26, 20, 16, 0.06);
+    --color-primary-text: #1a1410;
+    --color-secondary-text: #7a7160;
+    --color-white: #f5ecd7;
+    --color-lighter-gray: #fffaeb;
+    --color-light-gray: #d6c8a3;
+    --color-light-color: #d6c8a3;
+    --color-mid-gray: #b8a877;
+    --color-dark-gray: #423a2e;
+    --color-darker-gray: #1a1410;
+    --color-black: #0f0d09;
     --green-color: #28a745;
     --orange-color: #ffc107;
     --red-color: #dc3545;
@@ -37,9 +48,28 @@
     }
 }
 
+/* html:root outranks the :root rule that ghost_head injects after this stylesheet */
+html:root {
+    --ghost-accent-color: #9c5e10;
+}
+
 body {
     color: var(--primary-text-color);
     background-color: var(--white-color);
+    background-image: radial-gradient(var(--dot-grid) 1px, transparent 1px);
+    background-size: 24px 24px;
+    background-attachment: fixed;
+}
+
+::selection {
+    background: var(--brand-color);
+    color: var(--white-color);
+}
+
+/* Shared theme assets hardcode #fff for the dropdown menu */
+.gh-dropdown {
+    background-color: var(--lighter-gray-color);
+    box-shadow: 0 0 0 1px var(--light-gray-color), 0 7px 20px -5px rgba(0, 0, 0, 0.15);
 }
 
 a {
