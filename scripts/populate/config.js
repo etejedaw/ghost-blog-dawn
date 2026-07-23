@@ -8,6 +8,8 @@ module.exports = {
     },
     INTEGRATION_NAME: 'Local Seed',
     STATE_FILE: '.ghost-local.json',
+    // Must match the bind-mount folder in docker-compose.yml (themes/<name>)
+    THEME_NAME: 'dawn',
     SITE_BRANDING: [
         {key: 'accent_color', value: '#8b5cf6'},
         {key: 'locale', value: 'es'},

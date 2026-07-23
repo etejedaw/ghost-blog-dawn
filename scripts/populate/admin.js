@@ -1,5 +1,5 @@
 const GhostAdminAPI = require('@tryghost/admin-api');
-const {GHOST_URL, OWNER, INTEGRATION_NAME, STATE_FILE, SITE_BRANDING} = require('./config');
+const {GHOST_URL, OWNER, INTEGRATION_NAME, STATE_FILE, SITE_BRANDING, THEME_NAME} = require('./config');
 const state = require('./state');
 
 let cookies = '';
@@ -216,8 +216,8 @@ async function createIntegration() {
 async function activateTheme(key) {
     const api = new GhostAdminAPI({url: GHOST_URL, key, version: 'v5.0'});
     try {
-        await api.themes.activate('dawn');
-        console.log(`✓ Theme "dawn" activated`);
+        await api.themes.activate(THEME_NAME);
+        console.log(`✓ Theme "${THEME_NAME}" activated`);
     } catch (err) {
         console.error(`- Theme activation failed: ${err.message}`);
     }
