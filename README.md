@@ -70,7 +70,7 @@ Los archivos CSS source estan en `/assets/css/` y se compilan con Gulp a `/asset
 
 ## Pruebas locales con Docker
 
-Stack local con Ghost 5 + MySQL 8 para renderizar el tema sin depender del blog en produccion. El repo se bind-montea como `themes/dawn` en el contenedor, asi que editar `.hbs` se refleja al siguiente request.
+Stack local con Ghost 6 + MySQL 8 para renderizar el tema sin depender del blog en produccion. El repo se bind-montea como `themes/dawn` en el contenedor, asi que editar `.hbs` se refleja al siguiente request.
 
 **Levantar el stack:**
 

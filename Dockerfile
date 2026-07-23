@@ -1,4 +1,4 @@
-FROM ghost:5-alpine
+FROM ghost:6-alpine
 
 USER root
 RUN mkdir -p /var/lib/ghost/content/themes/dawn \
