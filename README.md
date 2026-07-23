@@ -68,6 +68,43 @@ npm run dev
 
 Los archivos CSS source estan en `/assets/css/` y se compilan con Gulp a `/assets/built/`.
 
+## Pruebas locales con Docker
+
+Stack local con Ghost 5 + MySQL 8 para renderizar el tema sin depender del blog en produccion. El repo se bind-montea como `themes/dawn` en el contenedor, asi que editar `.hbs` se refleja al siguiente request.
+
+**Levantar el stack:**
+
+```bash
+docker compose up -d
+```
+
+Ghost queda disponible en `http://localhost:2368` (admin en `/ghost`). MySQL es efimero (sin volumen), Ghost usa un volumen `ghost_content` para que el entrypoint pueda inicializar `/var/lib/ghost/content/` correctamente.
+
+**Poblar con datos de prueba:**
+
+```bash
+npm run populate
+```
+
+Compila los assets primero (hook `prepopulate` → `gulp build`, para que Ghost no sirva un bundle viejo) y ejecuta en orden:
+- `populate:admin` — espera a Ghost, crea owner (`owner@local.test` / `aprendizlocal`), crea integracion `Local Seed`, guarda el admin API key en `.ghost-local.json` (gitignored), activa el tema y configura branding (accent `#8b5cf6`, locale `es`, description).
+- `populate:users` — 4 members con distintas variantes (con/sin nombre, con notas).
+- `populate:articles` — 7 posts cubriendo casos de render: featured con cover, sin cover, members-only, paid-only, serie de 3 partes (para `series-posts.hbs`), draft. Mas 1 page.
+
+Cada subcomando se puede correr suelto (`npm run populate:users`, etc.). Todo el populate es **idempotente**: se puede re-ejecutar sin crear duplicados (la key se revalida contra la API, el owner/integracion se reusan, el branding solo se escribe si hay drift, y members/posts/pages se saltan si ya existen — members por email, posts y pages por titulo).
+
+**Logins:**
+
+- **Ghost Admin** (`http://localhost:2368/ghost`): `owner@local.test` / `aprendizlocal`. El 2FA pide un codigo de 6 digitos que llega a Mailpit (`http://localhost:8025`).
+- **Sign in del sitio** (portal de members): solo para members (`aprendiz1@local.test`, etc.); envia magic link a Mailpit. El owner **no** es member — intentar entrar ahi con `owner@local.test` da "no existe".
+
+**Reset completo** (nuke MySQL + volumen `ghost_content` + state local):
+
+```bash
+docker compose down -v
+rm .ghost-local.json
+```
+
 ## Upstream
 
 Fork de [TryGhost/Dawn](https://github.com/TryGhost/Dawn). Para traer actualizaciones:

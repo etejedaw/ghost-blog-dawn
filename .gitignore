@@ -5,3 +5,5 @@ assets/built/
 .vscode
 .claude
 .ghost-local.json
+tmp
+TODO.md
