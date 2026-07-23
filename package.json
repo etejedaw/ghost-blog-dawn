@@ -121,14 +121,15 @@
         "populate:articles": "node scripts/populate/articles.js",
         "populate": "npm run populate:admin && npm run populate:users && npm run populate:articles"
     },
+    "packageManager": "pnpm@11.15.1",
     "devDependencies": {
         "@tryghost/admin-api": "^1.14.8",
-        "@tryghost/shared-theme-assets": "2.6.1",
+        "@tryghost/shared-theme-assets": "2.7.1",
         "@tryghost/theme-translations": "^0.0.9",
-        "autoprefixer": "10.5.0",
+        "autoprefixer": "10.5.2",
         "beeper": "2.1.0",
-        "cssnano": "7.1.7",
-        "gscan": "5.4.3",
+        "cssnano": "8.0.2",
+        "gscan": "6.4.2",
         "gulp": "5.0.1",
         "gulp-concat": "2.6.1",
         "gulp-livereload": "4.0.2",
@@ -136,7 +137,7 @@
         "gulp-uglify": "3.0.2",
         "gulp-zip": "5.1.0",
         "ordered-read-streams": "2.0.0",
-        "postcss": "8.5.12",
+        "postcss": "8.5.16",
         "postcss-easy-import": "4.0.0",
         "pump": "3.0.4"
     }
