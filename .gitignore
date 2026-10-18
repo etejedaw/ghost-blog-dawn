@@ -7,3 +7,4 @@ assets/built/
 .ghost-local.json
 tmp
 TODO.md
+.env

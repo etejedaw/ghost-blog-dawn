@@ -21,10 +21,10 @@ services:
       mysql:
         condition: service_healthy
     ports:
-      - "2368:2368"
+      - "${GHOST_PORT:-2368}:2368"
     environment:
       NODE_ENV: development
-      url: http://localhost:2368
+      url: ${GHOST_URL:-http://localhost:${GHOST_PORT:-2368}}
       database__client: mysql
       database__connection__host: mysql
       database__connection__user: ghost
@@ -43,7 +43,7 @@ services:
     image: axllent/mailpit:latest
     restart: unless-stopped
     ports:
-      - "8025:8025"
+      - "${MAILPIT_UI_PORT:-8025}:8025"
     environment:
       MP_SMTP_AUTH_ACCEPT_ANY: 1
       MP_SMTP_AUTH_ALLOW_INSECURE: 1
