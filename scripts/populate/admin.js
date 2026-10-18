@@ -1,5 +1,5 @@
 const GhostAdminAPI = require('@tryghost/admin-api');
-const {GHOST_URL, OWNER, INTEGRATION_NAME, STATE_FILE, SITE_BRANDING, THEME_NAME} = require('./config');
+const {GHOST_URL, MAILPIT_URL, OWNER, INTEGRATION_NAME, STATE_FILE, SITE_BRANDING, THEME_NAME} = require('./config');
 const state = require('./state');
 
 let cookies = '';
@@ -90,8 +90,6 @@ async function runSetup() {
         `  docker compose down -v && docker compose up -d`
     );
 }
-
-const MAILPIT_URL = 'http://localhost:8025';
 
 async function clearMailpit() {
     try {

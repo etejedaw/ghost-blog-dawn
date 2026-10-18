@@ -1,5 +1,6 @@
 module.exports = {
-    GHOST_URL: process.env.GHOST_URL || 'http://localhost:2368',
+    GHOST_URL: process.env.GHOST_URL || `http://localhost:${process.env.GHOST_PORT || 2368}`,
+    MAILPIT_URL: `http://localhost:${process.env.MAILPIT_UI_PORT || 8025}`,
     OWNER: {
         name: 'Aprendiz Local',
         email: 'owner@local.test',

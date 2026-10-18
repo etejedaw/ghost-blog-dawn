@@ -116,9 +116,9 @@
         "test": "gscan .",
         "zip": "gulp zip",
         "prepopulate": "gulp build",
-        "populate:admin": "node scripts/populate/admin.js",
-        "populate:users": "node scripts/populate/users.js",
-        "populate:articles": "node scripts/populate/articles.js",
+        "populate:admin": "node --env-file-if-exists=.env scripts/populate/admin.js",
+        "populate:users": "node --env-file-if-exists=.env scripts/populate/users.js",
+        "populate:articles": "node --env-file-if-exists=.env scripts/populate/articles.js",
         "populate": "npm run populate:admin && npm run populate:users && npm run populate:articles"
     },
     "packageManager": "pnpm@11.15.1",
